@@ -23,6 +23,9 @@ def load_data():
     data["date/time"] = data["date/time"].dt.strftime('%H:%M')
     return data
 
+@st.experimental_memo
+def sample_data(data, sample_size): 
+    return data.sample(sample_size)
 
 # lat and long correspond to the center of the plot
 # we compute it by taking the average of lat and long from the data we recieve

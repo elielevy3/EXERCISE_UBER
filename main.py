@@ -1,12 +1,21 @@
 import streamlit as st
-from utility import load_data, map
+from utility import load_data, map, sample_data
 from datetime import time
 
 st.set_page_config(page_title="Uber Pickup Exploration 🚕", layout="wide")
 st.title("Welcome to NYC Uber data exploration ! 🚕")
 
 # get data
-data = load_data()
+raw_data = load_data()
+
+sample_size = st.sidebar.number_input("Select size of sample", min_value=1000, max_value=len(raw_data), step=1000)
+# if st.sidebar.button("Resample"): 
+    # st.experimental_memo.clear()
+    # st.experimental_rerun()
+st.sidebar.write("-----------")
+
+# sample data
+data = sample_data(raw_data, sample_size)
 
 # get time parameters
 start_time, end_time = st.sidebar.slider("Pick your time interval", value=(time(0, 0), time(23, 59)), format="HH:mm")
