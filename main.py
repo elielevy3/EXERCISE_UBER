@@ -2,8 +2,18 @@ import streamlit as st
 from utility import load_data, map
 from datetime import time
 
-st.set_page_config(page_title="Uber Pickup Exploration")
-st.title("Welcome to NYC Uber data exploration")
+st.set_page_config(page_title="Uber Pickup Exploration 🚕", layout="wide")
+st.title("Welcome to NYC Uber data exploration ! 🚕")
+
+# get data
+data = load_data()
+
+# get time parameters
+start_time, end_time = st.sidebar.slider("Pick your time interval", value=(time(0, 0), time(23, 59)), format="HH:mm")
+start_time = str(start_time)
+end_time = str(end_time)
+filtered_data = data[(data["date/time"] < end_time) & (data["date/time"] > start_time)][["lat", "lon"]]
+st.sidebar.write("------------")
 
 # famous points selection
 famous_points = {"Central Park": {'lat': 40.785091, 'lon': -73.968285},
@@ -14,24 +24,22 @@ famous_points = {"Central Park": {'lat': 40.785091, 'lon': -73.968285},
                  "Madison Square Garden": {'lat': 40.7505, "lon": -73.9934}, 
                  "Yankee Stadium": {"lat": 40.8296, "lon": -73.9262}, 
                  "JFK Airport": {'lat': 40.6413, "lon": -73.7781}}
-famous_point_picked = st.selectbox("Pick a famous site", famous_points.keys())
+
+famous_point_picked = st.sidebar.selectbox("Pick a famous site to center the map", famous_points.keys())
 picked_points_coordinates = famous_points[famous_point_picked]
 
-# get time parameters
-start_time, end_time = st.sidebar.slider("Pick your time interval", value=(time(0, 0), time(23, 59)), format="HH:mm")
-start_time = str(start_time)
-end_time = str(end_time)
+tab1, tab2 = st.columns([1, 2])
 
-# get and filter data
-data = load_data()
-filtered_data = data[(data["date/time"] < end_time) & (data["date/time"] > start_time)][["lat", "lon"]]
+# display dataframe
+with tab1:
+    st.dataframe(filtered_data)
+    st.write(len(filtered_data), "pickups")
 
 # display map
-map(filtered_data, picked_points_coordinates["lat"], picked_points_coordinates["lon"])
+with tab2:
+    map(filtered_data, picked_points_coordinates["lat"], picked_points_coordinates["lon"])
 
-# resampling option
-sample_size = st.sidebar.number_input("Pcik a sample size", min_value=1, max_value=1000000)
-st.sidebar.button("Wanna resample ?")
-
-
-
+# display code 
+if st.checkbox("Display code"): 
+    with open("./main.py", 'r') as file:
+        st.code(file.read(), language='python')

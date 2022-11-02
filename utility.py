@@ -6,10 +6,10 @@ import numpy as np
 
 # LOAD DATA ONCE
 @st.experimental_singleton
-def load_data(sample_size=10000):
+def load_data():
     data = pd.read_csv(
         "uber-raw-data-sep14.csv.gz",
-        nrows=sample_size,
+        nrows=80000,
         names=[
             "date/time",
             "lat",
@@ -22,6 +22,7 @@ def load_data(sample_size=10000):
     data["date/time"] = pd.to_datetime(data["date/time"], format="%H:%M")
     data["date/time"] = data["date/time"].dt.strftime('%H:%M')
     return data
+
 
 # lat and long correspond to the center of the plot
 # we compute it by taking the average of lat and long from the data we recieve
@@ -44,8 +45,9 @@ def map(data, lat=None, lon=None):
                 pdk.Layer(
                     "HexagonLayer",
                     data=data,
+                    opacity=0.25,
                     get_position=["lon", "lat"],
-                    radius=70,
+                    radius=35,
                     elevation_scale=4,
                     elevation_range=[0, 1000],
                     pickable=True,
@@ -55,3 +57,9 @@ def map(data, lat=None, lon=None):
             ],
         )
     )
+
+    # resampling option
+# sample_size = st.sidebar.number_input("Pick a sample size", min_value=1, step=1000)
+# if st.sidebar.button("Resample"):
+#     st.experimental_rerun()
+# st.sidebar.write("------------")
