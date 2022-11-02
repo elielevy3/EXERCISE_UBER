@@ -9,9 +9,6 @@ st.title("Welcome to NYC Uber data exploration ! 🚕")
 raw_data = load_data()
 
 sample_size = st.sidebar.number_input("Select size of sample", min_value=1000, max_value=len(raw_data), step=1000)
-# if st.sidebar.button("Resample"): 
-    # st.experimental_memo.clear()
-    # st.experimental_rerun()
 st.sidebar.write("-----------")
 
 # sample data
@@ -22,6 +19,7 @@ start_time, end_time = st.sidebar.slider("Pick your time interval", value=(time(
 start_time = str(start_time)
 end_time = str(end_time)
 filtered_data = data[(data["date/time"] <= end_time) & (data["date/time"] >= start_time)][["lat", "lon"]]
+
 st.sidebar.write("------------")
 
 # famous points selection
@@ -42,7 +40,7 @@ tab1, tab2 = st.columns([1, 2])
 # display dataframe
 with tab1:
     st.dataframe(filtered_data)
-    st.write(len(filtered_data), "pickups")
+    # st.write(len(filtered_data), "pickups")
 
 # display map
 with tab2:
