@@ -21,7 +21,7 @@ data = sample_data(raw_data, sample_size)
 start_time, end_time = st.sidebar.slider("Pick your time interval", value=(time(0, 0), time(23, 59)), format="HH:mm")
 start_time = str(start_time)
 end_time = str(end_time)
-filtered_data = data[(data["date/time"] < end_time) & (data["date/time"] > start_time)][["lat", "lon"]]
+filtered_data = data[(data["date/time"] <= end_time) & (data["date/time"] >= start_time)][["lat", "lon"]]
 st.sidebar.write("------------")
 
 # famous points selection
