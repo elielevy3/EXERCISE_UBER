@@ -5,6 +5,9 @@ from datetime import time
 st.set_page_config(page_title="Uber Pickup Exploration 🚕", layout="wide")
 st.title("Welcome to NYC Uber data exploration ! 🚕")
 
+st.write("Need Help ? Checkout the [Repo](https://github.com/elielevy3/EXERCISE_UBER)")
+
+
 # get data
 raw_data = load_data()
 

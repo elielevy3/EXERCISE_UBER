@@ -60,9 +60,3 @@ def map(data, lat=None, lon=None):
             ],
         )
     )
-
-    # resampling option
-# sample_size = st.sidebar.number_input("Pick a sample size", min_value=1, step=1000)
-# if st.sidebar.button("Resample"):
-#     st.experimental_rerun()
-# st.sidebar.write("------------")
