@@ -29,7 +29,7 @@ def sample_data(data, sample_size):
 
 # lat and long correspond to the center of the plot
 # we compute it by taking the average of lat and long from the data we recieve
-def map(data, lat=None, lon=None):
+def get_map(data, lat=None, lon=None):
     if lat is None:
         lat = np.average(data["lat"])
     if lon is None: 
@@ -60,3 +60,21 @@ def map(data, lat=None, lon=None):
             ],
         )
     )
+
+def get_famous_points(): 
+    return {"Central Park": {'lat': 40.785091, 'lon': -73.968285},
+                 "Brooklyn Bridge":{'lat': 40.7061, "lon": -73.9969},
+                 "Empire State Building": {'lat': 40.7484, 'lon': -73.9857} , 
+                 "Rockefeller Center": {'lat': 40.7587, 'lon': -73.9787}, 
+                 "Time Square": {'lat': 40.7580, 'lon': -73.9855}, 
+                 "Madison Square Garden": {'lat': 40.7505, "lon": -73.9934}, 
+                 "Yankee Stadium": {"lat": 40.8296, "lon": -73.9262}, 
+                 "JFK Airport": {'lat': 40.6413, "lon": -73.7781}}
+
+
+def get_filtered_data(start_time, end_time, data): 
+    # transform to string for comparison
+    start_time = start_time.strftime("%H:%M")
+    end_time = end_time.strftime("%H:%M")
+    filtered_data = data[((data["date/time"] >= start_time) & (data["date/time"] <= end_time))][["lat", "lon"]]
+    return filtered_data
