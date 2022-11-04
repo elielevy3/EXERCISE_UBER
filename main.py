@@ -2,8 +2,8 @@ import streamlit as st
 from utility import load_data, get_map, sample_data, get_famous_points, get_filtered_data
 from datetime import time
 
-st.set_page_config(page_title="Uber Pickup Exploration", layout="wide", page_icon="🚕",     menu_items={'Get Help': 'https://github.com/elielevy3/EXERCISE_UBER',})
-st.title("Welcome to NYC Uber data exploration 🚕!" )
+st.set_page_config(page_title="Uber Pickups Exploration", layout="wide", page_icon="🚕",     menu_items={'Get Help': 'https://github.com/elielevy3/EXERCISE_UBER',})
+st.title("Welcome to NYC Uber Pickups exploration 🚕!" )
 
 # get data
 raw_data = load_data()
