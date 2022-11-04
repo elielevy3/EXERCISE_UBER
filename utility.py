@@ -65,8 +65,8 @@ def get_famous_points():
     return {"Central Park": {'lat': 40.785091, 'lon': -73.968285},
                  "Brooklyn Bridge":{'lat': 40.7061, "lon": -73.9969},
                  "Empire State Building": {'lat': 40.7484, 'lon': -73.9857} , 
-                 "Rockefeller Center": {'lat': 40.7587, 'lon': -73.9787}, 
                  "Time Square": {'lat': 40.7580, 'lon': -73.9855}, 
+                 "La Guardia": {"lat": 40.7769, "lon": -73.8740},
                  "Madison Square Garden": {'lat': 40.7505, "lon": -73.9934}, 
                  "Yankee Stadium": {"lat": 40.8296, "lon": -73.9262}, 
                  "JFK Airport": {'lat': 40.6413, "lon": -73.7781}}
