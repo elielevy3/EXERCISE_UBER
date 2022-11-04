@@ -1,4 +1,3 @@
-from tkinter import Button
 import streamlit as st
 from utility import load_data, get_map, sample_data, get_famous_points, get_filtered_data
 from datetime import time
