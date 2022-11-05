@@ -1,5 +1,6 @@
+from pyparsing import line
 import streamlit as st
-from utility import load_data, get_map, sample_data, get_famous_points, get_filtered_data
+from utility import load_data, get_map, sample_data, get_famous_points, get_filtered_data, get_line_chart
 from datetime import time
 
 # page config and title
@@ -35,7 +36,11 @@ with col1:
 
 # display map
 with col2:
-    get_map(filtered_data, picked_famous_points_coordinates["lat"], picked_famous_points_coordinates["lon"])
+    get_map(filtered_data[["lat", "lon"]], picked_famous_points_coordinates["lat"], picked_famous_points_coordinates["lon"])
+
+# display line chart
+line_chart_data = get_line_chart(filtered_data)
+st.line_chart(line_chart_data)
 
 # display code 
 if st.checkbox("Display code"): 

@@ -76,5 +76,9 @@ def get_filtered_data(start_time, end_time, data):
     # transform to string for comparison
     start_time = start_time.strftime("%H:%M")
     end_time = end_time.strftime("%H:%M")
-    filtered_data = data[((data["date/time"] >= start_time) & (data["date/time"] <= end_time))][["lat", "lon"]]
+    filtered_data = data[((data["date/time"] >= start_time) & (data["date/time"] <= end_time))]
     return filtered_data
+
+
+def get_line_chart(data): 
+    return data.groupby(by=["date/time"]).count()[["lat"]].rename(columns={"lat": "Number of pickups"})
