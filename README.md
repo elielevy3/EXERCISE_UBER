@@ -1,5 +1,5 @@
 # EXERCISE_UBER
-Streamlit exercice for the 17/11/2022 Wyseday
+Streamlit exercice for the 30/11/2022 Wyseday
 
 
 ## Useful functions in utility.py
