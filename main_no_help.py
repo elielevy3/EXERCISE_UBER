@@ -5,7 +5,6 @@ from datetime import time
 # page config and title
 st.set_page_config(page_title="Uber Pickups Exploration", layout="wide", page_icon="🚕",     menu_items={'Get Help': 'https://github.com/elielevy3/EXERCISE_UBER',})
 st.title("Welcome to NYC Uber Pickups exploration 🚕!" )
-
 # get data
 raw_data = load_data()
 
